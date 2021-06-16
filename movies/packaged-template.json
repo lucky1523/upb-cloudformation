@@ -13,7 +13,7 @@ Resources:
             Ref: MyMoviesTable
       Handler: movies.getMovie
       Runtime: python3.6
-      CodeUri: s3://my-bucket-luciano-123/aac1ed491f33cadac6a6dc53a8339d84
+      CodeUri: s3://my-bucket-luciano-123/513035ce3293866a06c7a771d4904aa6
       Policies:
       - DynamoDBReadPolicy:
           TableName:
@@ -36,7 +36,7 @@ Resources:
             Ref: MyMoviesTable
       Handler: movies.putMovie
       Runtime: python3.6
-      CodeUri: s3://my-bucket-luciano-123/aac1ed491f33cadac6a6dc53a8339d84
+      CodeUri: s3://my-bucket-luciano-123/513035ce3293866a06c7a771d4904aa6
       Policies:
       - DynamoDBWritePolicy:
           TableName:
@@ -59,7 +59,7 @@ Resources:
             Ref: MyMoviesTable
       Handler: movies.getMovieByRoom
       Runtime: python3.6
-      CodeUri: s3://my-bucket-luciano-123/aac1ed491f33cadac6a6dc53a8339d84
+      CodeUri: s3://my-bucket-luciano-123/513035ce3293866a06c7a771d4904aa6
       Policies:
       - DynamoDBWritePolicy:
           TableName:
@@ -82,7 +82,7 @@ Resources:
             Ref: MyMoviesTable
       Handler: movies.getMoviesWatchedByPerson
       Runtime: python3.6
-      CodeUri: s3://my-bucket-luciano-123/aac1ed491f33cadac6a6dc53a8339d84
+      CodeUri: s3://my-bucket-luciano-123/513035ce3293866a06c7a771d4904aa6
       Policies:
       - DynamoDBReadPolicy:
           TableName:
@@ -105,7 +105,7 @@ Resources:
             Ref: MyMoviesTable
       Handler: movies.PutMoviesWatchedbyPerson
       Runtime: python3.6
-      CodeUri: s3://my-bucket-luciano-123/aac1ed491f33cadac6a6dc53a8339d84
+      CodeUri: s3://my-bucket-luciano-123/513035ce3293866a06c7a771d4904aa6
       Policies:
       - DynamoDBWritePolicy:
           TableName:
@@ -128,7 +128,7 @@ Resources:
             Ref: MyMoviesTable
       Handler: movies.getCinemaRoomsInfo
       Runtime: python3.6
-      CodeUri: s3://my-bucket-luciano-123/aac1ed491f33cadac6a6dc53a8339d84
+      CodeUri: s3://my-bucket-luciano-123/513035ce3293866a06c7a771d4904aa6
       Policies:
       - DynamoDBReadPolicy:
           TableName:
@@ -151,7 +151,7 @@ Resources:
             Ref: MyMoviesTable
       Handler: movies.putCinemaRoomInfo
       Runtime: python3.6
-      CodeUri: s3://my-bucket-luciano-123/aac1ed491f33cadac6a6dc53a8339d84
+      CodeUri: s3://my-bucket-luciano-123/513035ce3293866a06c7a771d4904aa6
       Policies:
       - DynamoDBWritePolicy:
           TableName:

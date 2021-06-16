@@ -1,4 +1,3 @@
-
 import json
 import boto3
 import os
@@ -16,13 +15,13 @@ def getMovie(event, context):
     response = table.get_item(
         Key={
             'pk': movie_id,
-            'sk': 'age'
+            'sk': 'info'
         }
     )
     item = response['Item']
     return {
         'statusCode': 200,
-        'body': json.dumps(item)
+        'body': json.dumps("item")
     }
 
 def putMovie(event, context):
@@ -37,7 +36,7 @@ def putMovie(event, context):
     item = {
         'pk': movie_id,
         'sk': 'info',
-        'title': body["title"],
+        'tittle': body["tittle"],
         'actors': body["actors"],
         'year': body["year"]
     }
@@ -48,7 +47,7 @@ def putMovie(event, context):
     
     return {
         'statusCode': 200,
-        'body': json.dumps(item)
+        'body': json.dumps('Hello from Lambda!')
     }
 
 def getMovieByRoom(event, context):
@@ -56,93 +55,21 @@ def getMovieByRoom(event, context):
     print(json.dumps(event))
     path = event["path"]
     room_id = path.split("/")[-1] # ["user", "id"]
-    movie_id = path.split("/")[-3]
+    movie_id = path.split("/")[-3] # ["user", "id"]
     body = json.loads(event["body"])
     response = table.get_item(
-        
-        Key = {
-            'pk' : room_id,
-            'sk' : movie_id
-        }    
-    )
-    item = response['Item']
-    return {
-        'statusCode': 200,
-        'body': json.dumps(item)
-        
-    }
-
-# def putMovieByRoom(event, context):
-#     print(json.dumps({"running": True}))
-#     print(json.dumps(event))
-#     path = event["path"]
-#     room_id = path.split("/")[-1]
-#     movie_id = path.split("/")[-3] # ["user", "id"]
-    
-#     body = json.loads(event["body"])
-#     print(body)
-#     print(room_id)
-#     print(movie_id)
-#     item = {
-#         'pk': movie_id+room_id,
-#         'sk': '',
-#         'atendee': body["atendee"]
-      
-#     }
-    print(json.dumps(item))
-    table.put_item(
-      Item=item
-    )
-    
-    return {
-        'statusCode': 200,
-        'body': json.dumps(item)
-    }
-    
-def getMoviesWatchedByPerson(event, context):
-    print(json.dumps({"running": True}))
-    print(json.dumps(event))
-    path = event["path"]
-    person_id = path.split("/")[-1] # ["user", "id"]
-    response = table.get_item(
         Key={
-            'pk': person_id,
-            'sk': 'movie_id'
+            'pk': room_id,
+            'sk': movie_id
         }
     )
     item = response['Item']
     return {
         'statusCode': 200,
-        'body': json.dumps(item)
+        'body': json.dumps("item")
     }
 
-def putMoviesWatchedByPerson(event, context):
-    print(json.dumps({"running": True}))
-    print(json.dumps(event))
-    path = event["path"]
-    person_id = path.split("/")[-1] # ["user", "id"]
-    
-    body = json.loads(event["body"])
-    print(body)
-    print(person_id)
-    item = {
-        'pk': person_id,
-        'sk': 'movie_id',
-        'time': body["time"],
-        'date': body["date"]
-    }
-    print(json.dumps(item))
-    table.put_item(
-      Item=item
-    )
-    
-    return {
-        'statusCode': 200,
-        'body': json.dumps(item)
-    }
-    
-    
-def getCinemaRoomInfo(event, context):
+def getRoom(event, context):
     print(json.dumps({"running": True}))
     print(json.dumps(event))
     path = event["path"]
@@ -150,7 +77,24 @@ def getCinemaRoomInfo(event, context):
     response = table.get_item(
         Key={
             'pk': room_id,
-            'sk': 'seats'
+            'sk': 'info'
+        }
+    )
+    item = response['Item']
+    return {
+        'statusCode': 200,
+        'body': json.dumps(item)
+    }
+    
+def getPerson(event, context):
+    print(json.dumps({"running": True}))
+    print(json.dumps(event))
+    path = event["path"]
+    person_id = path.split("/")[-1] # ["user", "id"]
+    response = table.get_item(
+        Key={
+            'pk': person_id,
+            'sk': 'info'
         }
     )
     item = response['Item']
@@ -159,7 +103,7 @@ def getCinemaRoomInfo(event, context):
         'body': json.dumps(item)
     }
 
-def putCinemaRoomInfo(event, context):
+def putPeopleList(event, context):
     print(json.dumps({"running": True}))
     print(json.dumps(event))
     path = event["path"]
@@ -170,9 +114,9 @@ def putCinemaRoomInfo(event, context):
     print(room_id)
     item = {
         'pk': room_id,
-        'sk': 'seats',
-        'numberOfSeats': body["numberOfSeats"],
-        '3D': body["3D"]
+        'sk': 'info',
+        'room_list': body["room_list"],
+
     }
     print(json.dumps(item))
     table.put_item(
@@ -181,5 +125,5 @@ def putCinemaRoomInfo(event, context):
     
     return {
         'statusCode': 200,
-        'body': json.dumps(item)
+        'body': json.dumps('Hello from Lambda!')
     }
